@@ -37,4 +37,26 @@ fn main(){
     println!("{x}");
     x = 6;
     println!("{x}");
+
+    // ownership rules
+    // each value in rust has an owner 
+    // there can be only one owner at a time
+    // when the owner gets out of scope, the value will be dropped
+
+    /*will not compile */
+    // let str = String::from("ansh");
+    // let len = get_length(str);
+    // println!("{}", len);
+
+    // print!("{}", str);
+
+    /*will compile */
+    // transferring back ownership  
+    let str= String::from("ansh");
+    let (str, len) =  get_length(str);
+    println!("{} {}",str, len);
+}
+fn get_length(str: String) -> (String, usize) {
+    let len =  str.len();
+    return(str,len);
 }
